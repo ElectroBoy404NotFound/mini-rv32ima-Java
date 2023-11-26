@@ -212,6 +212,7 @@ public class Rv32ima {
 						addy &= 0xFFFFFFFFL;
 						rdid = 0;
 
+//						System.out.println("STORE TO ADDRESS " + addy);
 						if (addy >= ram.getSize() - 3) {
 							addy -= ram.getOffset();
 							addy &= 0xFFFFFFFFL;
@@ -353,12 +354,12 @@ public class Rv32ima {
 
 								switch ((int) csrno) {
 									case 0 -> {
-										//System.out.printf("%08x: ECALL fault", pc);
+										System.out.printf("%08x: ECALL fault\n", pc);
 										trap = ((getState().extraflags & 3) > 0 ? (11 + 1) : (8 + 1)); // ECALL; 8 = "Environment call from U-mode"; 11 = "Environment call from M-mode"
 									}
 									case 1 -> {
 										trap = (3 + 1); // EBREAK 3 = "Breakpoint"
-										//System.err.println("Breakpoint hit!");
+										System.out.println("Breakpoint hit!\n");
 									}
 									default -> { System.out.println("SYSTEM OPF"); trap = (2 + 1); }
 								}
@@ -418,7 +419,9 @@ public class Rv32ima {
 
 			}
 			
-			if( trap > 0 ) {if(fail_on_all_faults > 0) {System.out.println("FAULT");} else trap = callback.handleException(ir, trap); System.out.println("TRAP");}
+			if( trap > 0 ) {if(fail_on_all_faults > 0) {System.out.println("FAULT");} else trap = callback.handleException(ir, trap); 
+//			System.out.println("TRAP");
+			}
 
 			// handle traps and interrupts.
 			if (trap > 0) {
@@ -438,7 +441,7 @@ public class Rv32ima {
 
 				if ((trap & 0x80000000L) < 1)
 					getState().extraflags |= 3;
-				System.out.println("TRAP");
+//				System.out.println("TRAP");
 			}
 
 			getState().pc = pc + 4;

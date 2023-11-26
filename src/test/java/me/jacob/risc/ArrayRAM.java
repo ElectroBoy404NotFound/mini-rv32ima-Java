@@ -4,7 +4,7 @@ import me.jacob.riscv.RV32_IRAM;
 
 public class ArrayRAM implements RV32_IRAM {
 	public static final long RAM_OFFSET = 0x80000000L;
-	public static final int  RAM_AMOUNT = 4 * 1024 * 1024;
+	public static final int  RAM_AMOUNT = 64 * 1024 * 1024;
 	
 	public byte[] ram;
 	

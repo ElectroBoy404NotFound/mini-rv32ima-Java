@@ -57,10 +57,10 @@ public class Callback implements RV32_ICallback {
 
 	public long handleException(long ir, long trap) {
 		// TODO Auto-generated method stub
-		System.out.println("EXCEPTION NO " + trap);
-		System.out.println("Processor dump:");
-		Main.emu.dumpState(Main.emu.getState());
-		if(trap != 3) System.exit(-1);
+//		System.out.println("EXCEPTION NO " + trap);
+//		System.out.println("Processor dump:");
+//		Main.emu.dumpState(Main.emu.getState());
+//		if(trap != 3) System.exit(-1);
 		return trap;
 	}
 }
